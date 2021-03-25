@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wispa Gen</title>
+    <meta name="title" content="Wispa Gen" />
+    <meta name="og:title" content="Wispa Gen" />
+    <meta name="og:color" content="#6b1cb4" />
+    <meta name="color" content="#6b1cb4" />
+    <link rel="shortcut icon" href="/imgs/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/imgs/favicon.ico" type="image/x-icon">
+    <meta name="propeller" content="ba4ce6043c2ec3dbae2d7cda09da5bf8">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CKP0FDXE6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-1CKP0FDXE6');
+    </script>
+    <script type="text/javascript">
+        window._mNHandle = window._mNHandle || {};
+        window._mNHandle.queue = window._mNHandle.queue || [];
+        medianet_versionId = "3121199";
+    </script>
+    <script src="https://contextual.media.net/dmedianet.js?cid=8CU68P4Y2" async="async"></script>
+</head>
+
+<script>
+    function checkBan() {
+        setTimeout(console.log.bind(console, "checked for ban"))
+        let queries = window.location.search;
+        let banned = queries.split("?");
+        if (banned.length > 0 && banned[0] !== "") {
+            banned.shift();
+            let stuff = banned[0].split("&");
+            let options = {
+                banned: false,
+                reason: "",
+                length: ""
+            }
+            stuff.forEach(thing => {
+                let s = thing.split("=")
+                if (s[0] == "banned") {
+                    if (s[1] == "true") {
+                        options.banned = true;
+                    }
+                } else if (s[0] == "length") {
+                    if (s[1] == "Permanent") options.length = "never"; else {
+                        options.length = decodeURIComponent(s[1]);
+                    }
+                } else if (s[0] == "reason") {
+                    options.reason = "With the reason: " + decodeURIComponent(s[1]);
+                }
+            })
+            if (options.banned == true) {
+                swal.fire({
+                    title: "You were banned!",
+                    text: options.reason,
+                    icon: 'error',
+                    confirmButtonText: "Ok, sorry!",
+                    footer: "You will get unbanned: " + options.length
+                })
+            }
+        }
+        setInterval(checkBan, 60000)
+    }
+</script>
+
+<body onload="checkBan()">
+    <meta name="propeller" content="ba4ce6043c2ec3dbae2d7cda09da5bf8">
+
+    {{{body}}}
+
+    <div id="815725365">
+        <script type="text/javascript">
+            try {
+                window._mNHandle.queue.push(function () {
+                    window._mNDetails.loadTag("815725365", "728x90", "815725365");
+                });
+            }
+            catch (error) { }
+        </script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+</body>
+
+</html>

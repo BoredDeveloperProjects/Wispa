@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
+<link rel="stylesheet" href="fonts/font-awesome.min.css">
+<link rel="stylesheet" href="css/Features-Boxed.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/Team-Boxed.css">
+<link rel="stylesheet" href="css/Testimonials.css">
+    
+<a class="btn btn-primary" role="button" style="border-top-left-radius: 100px;border-top-right-radius: 100px;border-bottom-right-radius: 100px;border-bottom-left-radius: 100px;background: linear-gradient(123deg, rgb(0,194,255), rgb(255,0,138));border-width: 0px;margin-top: 1vh;margin-left: 1vw;"
+         href="/"><i class="fa fa-arrow-left"></i></a>
+<h1 class="text-center" style="padding-top: 4vh;font-family: Alatsi, sans-serif;font-size: 3rem;">Login / Register</h1>
+<div class="container">
+    <div class="jumbotron" style="margin-top: 4vh;">
+        <a href="/api/auth/discord">
+            <button class="btn btn-primary btn-block" id="login"  type="submit" style="display: none;margin-top: 2vh;background: linear-gradient(35deg, rgb(255,8,156), rgb(4,214,242));">Authorize</button>
+        </a>
+        <script>
+            window.onload = () => {
+                document.getElementById('login').style.display = 'block';
+            }
+        </script>
+    </div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

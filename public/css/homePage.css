@@ -1,0 +1,127 @@
+:root {
+  --Primary: #1e1e2f;
+  --cards: #27293d;
+  --textcolor: white;
+  --btnColor: #842bd7;
+  --navColor: #181825;
+  --btnColorDark: #6b1cb4;
+}
+
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: var(--Primary);
+  color: var(--textcolor);
+  margin: 0;
+}
+
+.nav {
+  background-color: var(--navColor);
+}
+
+.nav h1 {
+  padding: 30px;
+  margin: 0;
+}
+
+.nav h1 span {
+  color: var(--btnColor);
+}
+
+.nav ul {
+  position: relative;
+  top: -75px;
+  float: right;
+  padding-right: 15px;
+  display: flex;
+  list-style-type: none;
+}
+
+.lnk {
+  padding: 1px 10px;
+  font-weight: 700;
+  text-decoration: none;
+  color: white;
+  transition: 0.4s;
+}
+
+.active {
+  padding: 1px 10px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--btnColor);
+}
+.active:hover {
+  color: white;
+}
+
+.btn {
+  padding: 5px 15px;
+  text-decoration: none;
+  color: white;
+  transition: 0.4s;
+  justify-content: space-between;
+  border: 3px solid var(--btnColor);
+  font-weight: 700;
+  background-color: var(--btnColor);
+  border-radius: 7px;
+}
+
+.btn:hover {
+  border-top-left-radius: 1px;
+  border-bottom-right-radius: 1px;
+  background-color: var(--btnColorDark);
+  border-color: var(--btnColorDark);
+}
+
+.fade-1 {
+  background-color: var(--navColor);
+  opacity: 0.7;
+}
+
+.fade-2 {
+  background-color: var(--navColor);
+  opacity: 0.4;
+}
+
+.fade-3 {
+  background-color: var(--navColor);
+  opacity: 0.2;
+}
+
+.welcome {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.welcome h1 {
+  transition: 0.5s;
+  opacity: 0.5;
+  max-width: 600px;
+  animation: test infinite 2s;
+}
+
+.welcome h1 span {
+  color: var(--btnColor);
+}
+
+@keyframes test {
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.welcome-btn ul {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  list-style: none;
+  left: -2%;
+}
+
+.welcome-btn ul li a {
+  font-size: 20px;
+}

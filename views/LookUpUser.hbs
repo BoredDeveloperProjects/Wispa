@@ -1,0 +1,361 @@
+<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/14b71d1005.js" crossorigin="anonymous"></script>
+<link href="/css/nucleo-icons.css" rel="stylesheet" />
+<link href="/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+<div class="wrapper">
+    <div class="sidebar" data="blue">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="/" class="simple-text logo-normal">
+                    WispaGen 2020
+                </a>
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="/dashboard">
+                        <i class="fas fa-home"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/generator">
+                        <i class="fas fa-download"></i>
+                        <p>Generators</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/redeem">
+                        <i class="fas fa-gift"></i>
+                        <p>Redeem</p>
+                    </a>
+                </li>
+                {{#if user.admin}}
+                <li class="active">
+                    <a href="/admin">
+                        <i class="fas fa-user-shield"></i>
+                        <p>Admin Panel</p>
+                    </a>
+                </li>
+                {{/if}}
+                <li>
+                    <a href="/discord">
+                        <i class="fab fa-discord"></i>
+                        <p>Discord</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/me">
+                        <i class="fas fa-user"></i>
+                        <p>Profile</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+            <div class="container-fluid">
+                <div class="navbar-wrapper">
+                    <div class="navbar-toggle d-inline">
+                        <button type="button" class="navbar-toggler">
+                            <span class="navbar-toggler-bar bar1"></span>
+                            <span class="navbar-toggler-bar bar2"></span>
+                            <span class="navbar-toggler-bar bar3"></span>
+                        </button>
+                    </div>
+                    <a class="navbar-brand" href="javascript:void(0)">WispaGen Dashboard</a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navigation">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="dropdown nav-item">
+                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                <div class="photo">
+                                    <img src="https://cdn.discordapp.com/avatars/{{user.discordID}}/{{user.avatar}}"
+                                        alt="Profile Photo">
+                                </div>
+                                <b class="caret d-none d-lg-block d-xl-block"></b>
+                                <p class="d-lg-none">
+                                    Log out
+                                </p>
+                            </a>
+                            <ul class="dropdown-menu dropdown-navbar" style="background-color: #344675;">
+                                <li class="nav-link"><a href="/me" class="nav-item dropdown-item">Profile</a></li>
+                                {{#if user.admin}}
+                                <li class="nav-link"><a href="/admin" class="nav-item dropdown-item">Admin</a></li>
+                                {{/if}}
+                                <li class="dropdown-divider" style="border-color: #212529;"></li>
+                                <li class="nav-link"><a href="/logout" class="nav-item dropdown-item">Log out</a></li>
+                            </ul>
+                        </li>
+                        <li class="separator d-lg-none"></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="tim-icons icon-simple-remove"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            {{#if alert}}
+                {{#if alert.alert}}
+                <div class="row">
+                    <div class="col">
+                        <div class="container" style="margin-top: 2vh; margin-left: 1.2vw;">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert"
+                        style=" margin-left: -2.5vw;">
+                        {{alert.message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: 0.2vh;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+            {{/if}}
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-title text-center" style="margin-top: 3vh; border-bottom: 1px solid #363c53;">
+                            <h3>Data for <strong>{{lookedUpUser.username}}#{{lookedUpUser.discriminator}}</strong></h3>
+                        </div>
+                        <div class="card-body" style="color: white; margin-left: 1vw;">
+                            <div class="text-right" style="color: white;padding-right: 1vw;"><a onclick="edit();" style=" color: white;"><i class="fas fa-cog"></i></a></div>
+                            <div id="show-UserData" style="display: block;">
+                                <strong>Discord ID</strong>: {{lookedUpUser.discordID}}<br><br>
+                                <strong>Avatar</strong>:<br> <a href="https://cdn.discordapp.com/avatars/{{lookedUpUser.discordID}}/{{lookedUpUser.avatar}}"><img width="8%" src="https://cdn.discordapp.com/avatars/{{lookedUpUser.discordID}}/{{lookedUpUser.avatar}}" alt="{{lookedUpUser.username}}'s avatar on Discord"></a><br><br>
+                                <strong>Plan</strong>: {{lookedUpUser.plan}}<br><br>
+                                <strong>Redeemed Key</strong>: {{lookedUpUser.dateBought}}<br><br>
+                                <strong>Banned Right Now</strong>: {{lookedUpUser.banned}}<br><br>
+                                <strong>Beta Access</strong>: {{#if lookedUpUser.beta}} True {{else}} False {{/if}}
+                            </div>
+                             <div id="edit-UserData" style="display: none;">
+                                 <form class="form" style="color: white;" method="POST" action="/admin/user/lookup/{{lookedUpUser.discordID}}">
+                                    <div class="form-group">
+                                        <label for="{{lookedUpUser.discordID}}_DISCORDID"><strong style="color: white;">Discord ID:</strong></label><br>
+                                        <input id="{{lookedUpUser.discordID}}_DISCORDID" style="width: 100%; background-color: #1e1e2f; color: lightgray; border: 1px solid #cad1d7; border-radius: 0.25rem; height: calc(2.25rem + 2px);" name="DiscordID" type="text" disabled value=" {{lookedUpUser.discordID}}"
+                                    </div><br>
+                                    <div class="form-group">
+                                        <label for="{{lookedUpUser.discordID}}_AVATAR"><strong style="color: white;">Avatar:</strong></label><br>
+                                        <input id="{{lookedUpUser.discordID}}_AVATAR" type="text" style="width: 100%; background-color: #1e1e2f; color: lightgray; border: 1px solid #cad1d7; border-radius: 0.25rem; height: calc(2.25rem + 2px);" disabled value=" https://cdn.discordapp.com/avatars/{{lookedUpUser.discordID}}/{{lookedUpUser.avatar}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{lookedUpUser.discordID}}_PLAN"><strong style="color: white;">Plan:</strong></label><br>
+                                        <select id="{{lookedUpUser.discordID}}_PLAN" class="custom-select" style="background-color: #1e1e2f;" name="plan" value="">
+                                            <option selected>{{lookedUpUser.plan}}</option>
+                                            {{#each plans}}
+                                                <option>{{this.plan}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="{{lookedUpUser.discordID}}_REDEEMEDKEY"><strong style="color: white;">Date Bought:</strong></label><br>
+                                        <input id="{{lookedUpUser.discordID}}_REDEEMEDKEY" style="width: 100%; background-color: #1e1e2f; color: lightgray; border: 1px solid #cad1d7; border-radius: 0.25rem; height: calc(2.25rem + 2px);" type="datetime" disabled value=" {{lookedUpUser.dateBought}}">
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="{{lookedUpUser.discordID}}_BETA" value="true" name="BetaAccess" {{#if lookedUpUser.beta}} checked {{/if}} style="opacity: 1; visibility: visible; margin-left: 0rem;">
+                                        <label class="form-check-label" for="{{lookedUpUser.discordID}}_BETA"><strong style="color: white;">
+                                            Beta Access
+                                        </strong></label>
+                                    </div>
+                                    <button class="btn btn-success" type="submit">Save!</button>
+                                </form>
+                                <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#BanCollapse" aria-controls="BanCollapse">Ban!</button>
+                                <br><br><br>
+                                <div id="BanCollapse" class="collapse">
+                                    <div class="card" style="background-color: #212529;">
+                                        <div class="card-title text-center">
+                                            <h3 class="mt-3" style="color: red;"><strong>Ban Menu</strong></h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form class="form" method="POST" action="/admin/user/ban/{{lookedUpUser.discordID}}">
+                                                <div class="form-group">
+                                                    <label for="length">Length:</label><br>
+                                                    <input class="form-control" id="length" type="text" placeholder="P = permanent. Otherwise enter like 3Y, 1M, 3W, 4D, 5H" name="length">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="BanReason">Reason:</label><br>
+                                                    <input class="form-control" id="BanReason" type="text" placeholder="They were mean" name="reason">
+                                                </div>
+                                                <button type="submit" class="btn btn-danger">Confirm</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="KickCollapse" class="collapse">
+                                    <div class="card" style="background-color: #212529;">
+                                        <div class="card-title text-center">
+                                            <h3 class="mt-3" style="color: red;"><strong>Kick Menu</strong></h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form class="form" method="POST" action="/admin/user/kick/{{lookedUpUser.discordID}}">
+                                                <div class="form-group">
+                                                    <label for="KickReason">Reason:</label><br>
+                                                    <input class="form-control" id="KickReason" type="text" placeholder="They were mean" name="reason">
+                                                </div>
+                                                <button type="submit" class="btn btn-danger">Confirm</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="copyright">
+                    ©2020 WispaGen
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script>
+    function edit() {
+        let before = document.getElementById("show-UserData");
+        let after = document.getElementById("edit-UserData");
+        if(before.style.display == "block") {
+            before.style.display = "none";
+            after.style.display = "block";
+        } else {
+            before.style.display = "block";
+            after.style.display = "none";
+        }
+    }
+</script>
+<script src="/js/core/jquery.min.js"></script>
+<script src="/js/core/popper.min.js"></script>
+<script src="/js/core/bootstrap.min.js"></script>
+<script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="/js/plugins/chartjs.min.js"></script>
+<script src="/js/plugins/bootstrap-notify.js"></script>
+<script src="/js/black-dashboard.min.js?v=1.0.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script>
+    $(document).ready(function () {
+        $().ready(function () {
+            $sidebar = $('.sidebar');
+            $navbar = $('.navbar');
+            $main_panel = $('.main-panel');
+
+            $full_page = $('.full-page');
+
+            $sidebar_responsive = $('body > .navbar-collapse');
+            sidebar_mini_active = true;
+            white_color = false;
+
+            window_width = $(window).width();
+
+            fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+
+
+            $('.fixed-plugin a').click(function (event) {
+                if ($(this).hasClass('switch-trigger')) {
+                    if (event.stopPropagation) {
+                        event.stopPropagation();
+                    } else if (window.event) {
+                        window.event.cancelBubble = true;
+                    }
+                }
+            });
+
+            $('.fixed-plugin .background-color span').click(function () {
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+
+                var new_color = $(this).data('color');
+
+                if ($sidebar.length != 0) {
+                    $sidebar.attr('data', new_color);
+                }
+
+                if ($main_panel.length != 0) {
+                    $main_panel.attr('data', new_color);
+                }
+
+                if ($full_page.length != 0) {
+                    $full_page.attr('filter-color', new_color);
+                }
+
+                if ($sidebar_responsive.length != 0) {
+                    $sidebar_responsive.attr('data', new_color);
+                }
+            });
+
+            $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function () {
+                var $btn = $(this);
+
+                if (sidebar_mini_active == true) {
+                    $('body').removeClass('sidebar-mini');
+                    sidebar_mini_active = false;
+                    blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+                } else {
+                    $('body').addClass('sidebar-mini');
+                    sidebar_mini_active = true;
+                    blackDashboard.showSidebarMessage('Sidebar mini activated...');
+                }
+                var simulateWindowResize = setInterval(function () {
+                    window.dispatchEvent(new Event('resize'));
+                }, 180);
+                setTimeout(function () {
+                    clearInterval(simulateWindowResize);
+                }, 1000);
+            });
+
+            $('.switch-change-color input').on("switchChange.bootstrapSwitch", function () {
+                var $btn = $(this);
+
+                if (white_color == true) {
+
+                    $('body').addClass('change-background');
+                    setTimeout(function () {
+                        $('body').removeClass('change-background');
+                        $('body').removeClass('white-content');
+                    }, 900);
+                    white_color = false;
+                } else {
+
+                    $('body').addClass('change-background');
+                    setTimeout(function () {
+                        $('body').removeClass('change-background');
+                        $('body').addClass('white-content');
+                    }, 900);
+
+                    white_color = true;
+                }
+
+
+            });
+
+            $('.light-badge').click(function () {
+                $('body').addClass('white-content');
+            });
+
+            $('.dark-badge').click(function () {
+                $('body').removeClass('white-content');
+            });
+        });
+    });
+</script>

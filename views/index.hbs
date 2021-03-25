@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/css/homePage.css">
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/14b71d1005.js" crossorigin="anonymous"></script>
+<div class="nav">
+    <h1>Wispa<span>Gen</span></h1>
+    <ul>
+        {{#if user}}
+        <li><a href="/dashboard" class="active">Home</a></li>
+        {{else}}
+        <li><a href="/" class="active">Home</a></li>
+        {{/if}}
+        <li><a href="/discord" class="active">Discord</a></li>
+        {{#if user}}
+        <li><a href="/api/auth/discord" class="btn">Login</a></li>
+        {{else}}
+        <li><a href="/api/auth/discord" class="btn signup">Sign Up</a></li>
+        {{/if}}
+    </ul>
+</div>
+<!-- Fade effecctss eEEEE -->
+<div class="fade-1"><br></div>
+<div class="fade-2"><br></div>
+<div class="fade-3"><br></div>
+<!-- Main thingszz -->
+<div class="welcome">
+    <h1>The #1 cheapest <span>alt</span> provider.</h1>
+</div>
+<div class="welcome-btn">
+    <ul>
+        <li><a href="https://sellix.io/Wispaa/category/5fc934f18e79d" class="btn">Buy Now!</a></li>
+    </ul>
+</div>

@@ -1,0 +1,39 @@
+{
+  "name": "wispafullsite",
+  "version": "0.0.1",
+  "description": "the site",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon npm start",
+    "start": "node app.js",
+    "debug": "DEBUG=express-session npm start"
+  },
+  "author": "Max Thakur",
+  "license": "MIT",
+  "dependencies": {
+    "base32": "0.0.6",
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "cron": "^1.8.2",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.0.0",
+    "csurf": "^1.11.0",
+    "debug": "^4.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "http-errors": "^1.8.0",
+    "mongoose": "^5.10.11",
+    "node-fetch": "^2.6.1",
+    "passport": "^0.4.1",
+    "passport-discord": "^0.1.4",
+    "sellix-api": "0.0.3",
+    "sellix.io": "0.0.4"
+  },
+  "devDependencies": {
+    "handlebars": "^4.7.6"
+  }
+}

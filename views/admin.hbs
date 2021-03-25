@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
+<link rel="stylesheet" href="/fonts/font-awesome.min.css">
+<link rel="stylesheet" href="/css/Features-Boxed.css">
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/Team-Boxed.css">
+<link rel="stylesheet" href="/css/Testimonials.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+    {{#if messages.addAccountType}}
+        <div class="container text-left" style="margin-top: 2vh; width: 10000vw; margin-left: 20vw;">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="width: 60vw;">
+                Account Type Added Successfully!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if messages.error}}
+        <div class="container text-left" style="margin-top: 2vh; width: 10000vw; margin-left: 20vw;">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 60vw;">
+                {{messages.error}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if messages.addAccounts}}
+        <div class="container text-left" style="margin-top: 2vh; width: 10000vw; margin-left: 20vw;">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="width: 60vw;">
+                Accounts Added Successfully!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    {{/if}}
+
+<a class="btn btn-primary" role="button" style="border-top-left-radius: 100px;border-top-right-radius: 100px;border-bottom-right-radius: 100px;border-bottom-left-radius: 100px;border-width: 0px;margin-top: 1vh;margin-left: 1vw;background: linear-gradient(-69deg, rgb(255,0,153), rgb(0,224,255) 99%);"
+   href="/"><i class="fa fa-arrow-left"></i></a>
+<h1 class="text-center" style="margin-top: 4vh;font-family: Alatsi, sans-serif;font-size: 3rem;margin-bottom: 4vh;">Admin Panel</h1>
+<div class="container text-center">
+    <h1>Hi {{user.username}}!</h1>
+    <br>
+    <h2 style="margin-top: 0.5vh;">What would you like to do today?</h2>
+    <br>
+    <ul class="list-unstyled text-center">
+        <li>
+            <a class="btn btn-primary" data-toggle="collapse" style="background: linear-gradient(-69deg, rgb(255,0,153), rgb(0,224,255) 99%); border: none;" href="#addAccounts" role="button" aria-expanded="false" aria-controls="addAccounts">Add more accounts</a>
+        </li>
+        <li>
+            <a class="btn btn-primary" data-toggle="collapse" style="margin-top: 1vh; background: linear-gradient(-69deg, rgb(255,0,153), rgb(0,224,255) 99%); border: none;" href="#addAccountTypes" role="button" aria-expanded="false" aria-controls="addAccountTypes"> Add a New Account Type</a>
+        </li>
+    </ul>
+    <div class="col">
+        <div class="collapse multi-collapse" id="addAccounts">
+            <div class="card card-body">
+                <form method="POST" action="/admin/AddAccounts">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select an Account type:</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="AccountType" onchange="getVal(this);">
+                            {{#each AccountTypes}}
+                            <option>{{this.name}} Stock: {{this.stock}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Alt List</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="accounts" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="collapse multi-collapse" id="addAccountTypes">
+            <div class="card card-body">
+                <form method="POST" action="/admin/addAccountType">
+                    <div class="form-group">
+                        <label for="serviceName">Type in new service name:</label><br>
+                        <input class="form-control" style="margin-top: 1vh;" type="text" id="serviceName" name="service">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" style="position:relative; top: -2.1px;" id="paid" name="paid" value="true">
+                        <label for="paid" style="font-family: 'Montserrat', sans-serif; margin-left: 0.2vw;">Paid only?</label>
+                    </div>
+                    <button type="submit" style="margin-top:2vh;" class="btn btn-success">Add a New Account Type</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
