@@ -4,7 +4,7 @@ There is 0 point in keeping this private... Have fun with it lmao. Also I didn't
 
 ## Installation
 1. Make sure you have Node.js by doing `node -v`.
-2. Make sure MongoDB is running by doing `mongo`
+2. Make sure MongoDB is running by doing `mongo`.
 3. Copy all the stuff inside of [Example.env](/Example.env) into a new file called `.env` and set all the values to their respected values.
 4. Run `npm i` and make sure NPM installs all the packages.
 5. Run `node .` to start the application, then check http://localhost:3000/, that is where it will start up to. You can do whatever you want from there.
